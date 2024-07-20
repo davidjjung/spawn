@@ -209,9 +209,6 @@ public class Ant extends TamableAnimal implements NeutralMob{
                 if(itemStack.is(Items.HONEY_BOTTLE)) this.spawnAtLocation(Items.GLASS_BOTTLE);
                 if(itemStack.is(Items.MUSHROOM_STEW)) this.spawnAtLocation(Items.BOWL);
 
-                if (!player.getAbilities().instabuild) {
-                    itemStack.shrink(1);
-                }
                 if (this.getHealth() < this.getMaxHealth()) {
                     this.heal(6);
                 }
@@ -220,6 +217,9 @@ public class Ant extends TamableAnimal implements NeutralMob{
                 }
                 if (this.level() instanceof ServerLevel serverLevel) {
                     serverLevel.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, itemStack), this.getX(), this.getY(0.6666666666666666), this.getZ(), 10, this.getBbWidth() / 4.0f, this.getBbHeight() / 4.0f, this.getBbWidth() / 4.0f, 0.05);
+                }
+                if (!player.getAbilities().instabuild) {
+                    itemStack.shrink(1);
                 }
                 this.playSound(SpawnSoundEvents.ANT_EAT.get());
                 this.heal(6);
